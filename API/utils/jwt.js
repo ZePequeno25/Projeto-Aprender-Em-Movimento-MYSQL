@@ -37,7 +37,7 @@ const verifyToken = async (token) => {
     /**Verifica se o token expirou */
     if (error.name === 'TokenExpiredError') {
       /**Retorna o erro */
-      throw new Error('Token expirado');
+      throw new Error('Token expirado');ww
     } 
     /**Verifica se o token é inválido */
     else if (error.name === 'JsonWebTokenError') {

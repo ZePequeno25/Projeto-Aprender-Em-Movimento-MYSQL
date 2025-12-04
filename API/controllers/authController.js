@@ -110,53 +110,53 @@ const register = async (req, res) => {
     if (existingUsers.length > 0) {
       //Obtém o usuário existente
       const existingUser = existingUsers[0];
-      //Loga o CPF já cadastrado
+      //Log o CPF já cadastrado
       console.log('❌ [REGISTER] CPF já cadastrado:', {
-        //Loga o CPF
+        //Log do CPF
         cpf: cpf.substring(0, 3) + '***',
-        //Loga o tipo de usuário
+        //Log do tipo de usuário
         userType,
-        //Loga o email do usuário existente
+        //Log do email do usuário existente
         existingEmail: existingUser.email
       });
       
-      //Loga o CPF já cadastrado para este tipo de usuário
+      //Log do CPF já cadastrado para este tipo de usuário
       logger.warn('CPF já cadastrado para este tipo de usuário', 'AUTH', { 
-        //Loga o CPF
+        //Log do CPF
         cpf: cpf.substring(0, 3) + '***', 
-        //Loga o tipo de usuário
+        //Log do tipo de usuário
         userType 
       });
       
-      //Retorna erro de CPF já cadastrado para este tipo de usuário
+      //Retorna erro do CPF já cadastrado para este tipo de usuário
       return res.status(400).json({ 
-        //Loga o erro
+        //Log do erro
         error: `Tipo de usuário ou CPF já cadastrado` 
       });
     }
 
-    //Loga o CPF livre para cadastro
+    //Log do CPF livre para cadastro
     console.log('✅ [REGISTER] CPF livre para cadastro');
 
     //Obtém a senha final
     const finalPassword = (password && password.trim().length > 0) ? password : cpf;
     
-    //Loga a geração de hash da senha
+    //Log da geração de hash da senha
     console.log('🔐 [REGISTER] Gerando hash da senha...');
-    //Loga a senha recebida
+    //Log da senha recebida
     console.log('🔐 [REGISTER] Password recebido:', password ? `"${password.substring(0, 3)}***" (${password.length} chars)` : 'não fornecido');
-    //Loga a senha final a ser usada
+    //Log da senha final a ser usada
     console.log('🔐 [REGISTER] Senha final a ser usada (primeiros 3 chars):', finalPassword ? finalPassword.substring(0, 3) + '***' : 'não fornecida');
-    //Loga o tamanho da senha final
+    //Log do tamanho da senha final
     console.log('🔐 [REGISTER] Tamanho da senha final:', finalPassword ? finalPassword.length : 0);
-    //Loga se a senha é customizada
+    //Log do se a senha é customizada
     console.log('🔐 [REGISTER] Usando senha customizada?', (password && password.trim().length > 0));
     //Gera o hash da senha
     const passwordHash = await bcrypt.hash(finalPassword, SALT_ROUNDS);
-    //Loga o hash gerado
+    //Log do hash gerado
     console.log('🔐 [REGISTER] Hash gerado (primeiros 30 chars):', passwordHash.substring(0, 30) + '...');
     console.log('🔐 [REGISTER] Tamanho do hash:', passwordHash.length);
-    //Gera a chave de hash
+    //Gera a chave do hash
     const hashKey = passwordHash.replace(/[^a-zA-Z0-9]/g, '').substring(0, 16);
     //Gera o email do usuário
     const email = `${cpf}_${userType}_${hashKey}@saberemmovimento.com`;
@@ -300,12 +300,13 @@ try {
       const normalizedCpf = cpf.replace(/\D/g, '');
       //Normaliza o userType
       const normalizedUserType = userType.toLowerCase();
-      //Loga o CPF normalizado
+      //Log do CPF normalizado
       console.log('CPF (normalizado):', normalizedCpf);
-      //Loga o userType normalizado
+      //Log do userType normalizado
       console.log('UserType (normalizado):', normalizedUserType);
       
       console.log('CPF (normalizado):', normalizedCpf);
+      //Log do userType normalizado
       console.log('UserType (normalizado):', normalizedUserType);
 
       //Obtém o pool de conexões MySQL
@@ -322,27 +323,27 @@ try {
 
       //Verifica se nenhum usuário foi encontrado
       if (userRows.length === 0) {
-        //Loga que nenhum usuário foi encontrado
+        //Log do que nenhum usuário foi encontrado
         console.log('❌ Nenhum usuário com CPF:', normalizedCpf, 'e tipo:', normalizedUserType);
         return res.status(401).json({ error: 'Usuário ou senha ou tipo incorreta' });
       }
 
       //Obtém os dados do usuário
       const userData = userRows[0];
-      //Loga o email do usuário
+      //Log do email do usuário
       console.log('✅ Usuário encontrado:', userData.email);
-      //Loga o hash armazenado
+      //Log do hash armazenado
       console.log('🔐 [LOGIN] Hash armazenado (primeiros 30 chars):', userData.password ? userData.password.substring(0, 30) + '...' : 'NULL');
-      //Loga o tamanho do hash armazenado
+      //Log do tamanho do hash armazenado
       console.log('🔐 [LOGIN] Tamanho do hash armazenado:', userData.password ? userData.password.length : 0);
-      //Loga a senha recebida
+      //Log da senha recebida
       console.log('🔐 [LOGIN] Senha recebida (primeiros 3 chars):', password ? password.substring(0, 3) + '***' : 'não fornecida');
-      //Loga o tamanho da senha recebida
+      //Log do tamanho da senha recebida
       console.log('🔐 [LOGIN] Tamanho da senha recebida:', password ? password.length : 0);
 
       //Verifica se o hash existe
       if (!userData.password) {
-        //Loga que o hash de senha não foi encontrado no banco
+        //Log do que o hash de senha não foi encontrado no banco
         console.log('❌ [LOGIN] Hash de senha não encontrado no banco!');
         return res.status(401).json({ error: 'Usuário ou senha ou tipo incorreta' });
       }
@@ -350,30 +351,30 @@ try {
       //Verifica a senha diretamente com o hash salvo
       console.log('🔐 [LOGIN] Verificando senha com bcrypt.compare...');
       const passwordMatch = await bcrypt.compare(password, userData.password);
-      //Loga o resultado da comparação
+      //Log do resultado da comparação
       console.log('🔐 [LOGIN] Resultado da comparação:', passwordMatch);
       
       if (!passwordMatch) {
-        //Loga que a senha está incorreta
+        //Log do que a senha está incorreta
         console.log('🔐 [LOGIN] Tentando comparar com CPF como fallback...');
         const cpfMatch = await bcrypt.compare(normalizedCpf, userData.password);
-        //Loga a comparação com o CPF
+        //Log da comparação com o CPF
         console.log('🔐 [LOGIN] Comparação com CPF:', cpfMatch);
       }
 
       if (!passwordMatch) {
-        //Loga que a senha está incorreta
+        //Log do que a senha está incorreta
         console.log('❌ Senha incorreta');
         return res.status(401).json({ error: 'Usuário ou senha ou tipo incorreta' });
       }
 
-      //Loga que o login foi bem-sucedido
+      //Log do que o login foi bem-sucedido
       console.log('✅ Login bem-sucedido!');
 
       //Gera o token JWT
       const token = generateToken(userData.id, userData.email, userData.userType);
 
-      //Loga o token gerado
+      //Log do token gerado
       console.log('🔑 [LOGIN] Token gerado');
 
       //Salva o token no campo correto (currentToken)
@@ -385,19 +386,19 @@ try {
         'UPDATE users SET currentToken = ?, lastLogin = ?, updatedAt = ? WHERE id = ?',
         [token, now, now, userData.id]
       );
-      //Loga que o token foi salvo no campo currentToken do usuário
+      //Log do que o token foi salvo no campo currentToken do usuário
       console.log('✅ Token salvo no campo currentToken do usuário:', userData.id);
 
       return res.status(200).json({ 
-        //Loga o ID do usuário
+        //Log do ID do usuário
         userId: userData.id, 
-        //Loga o token
+        //Log do token
         token, 
-        //Loga o tipo de usuário
+        //Log do tipo de usuário
         userType: userData.userType, 
-        //Loga o nome completo do usuário
+        //Log do nome completo do usuário
         nomeCompleto: userData.nomeCompleto, 
-        //Loga o email do usuário
+        //Log do email do usuário
         email: userData.email 
       });
     }
@@ -425,15 +426,15 @@ try {
       );
       
       return res.status(200).json({ 
-        //Loga o ID do usuário
+        //Log do ID do usuário
         userId: user.userId, 
-        //Loga o token
+        //Log do token
         token, 
-        //Loga o tipo de usuário
+        //Log do tipo de usuário
         userType: user.userType, 
-        //Loga o nome completo do usuário
+        //Log do nome completo do usuário
         nomeCompleto: user.nomeCompleto, 
-        //Loga o email do usuário
+        //Log do email do usuário
         email 
       });
     }
@@ -441,7 +442,7 @@ try {
     return res.status(400).json({ error: 'Missing required fields' });
 
   } catch (error) {
-    //Loga o erro
+    //Log do erro
     logger.logError(error, 'AUTH');
     //Retorna erro interno
     res.status(500).json({ error: error.message });
@@ -449,22 +450,22 @@ try {
 };
 
 const verifyUserForPasswordResetHandler = async (req, res) => {
-    //Loga a requisição
+    //Log da requisição
     logger.logRequest(req, 'PASSWORD_RESET');
     
     try {
         //Obtém os dados do usuário
         const { email, dataNascimento, cpf, userType } = req.body;
-        //Loga a verificação do usuário
+        //Log da verificação do usuário
         
         console.log('🔍 [PasswordReset] Verificando usuário:', { 
-            //Loga o email do usuário
+            //Log do email do usuário
             email, 
-            //Loga a data de nascimento do usuário
+            //Log da data de nascimento do usuário
             dataNascimento,
-            //Loga o CPF do usuário
+            //Log do CPF do usuário
             cpf: cpf ? cpf.substring(0, 3) + '***' : 'não fornecido',
-            //Loga o tipo de usuário
+            //Log do tipo de usuário
             userType
         });
 
@@ -473,12 +474,12 @@ const verifyUserForPasswordResetHandler = async (req, res) => {
 
         //Verifica se o CPF, userType e email foram fornecidos
         if (cpf && userType && !email) {
-            //Loga a verificação por CPF
+            //Log da verificação por CPF
             console.log('🔄 [PasswordReset] Usando verificação por CPF...');
             //Verifica se o CPF é válido
             
             if (!/^\d{11}$/.test(cpf)) {
-                //Loga o CPF inválido
+                //Log do CPF inválido
                 console.log('❌ [PasswordReset] CPF inválido:', cpf);
                 return res.status(400).json({ error: 'Formato do CPF inválido' });
             }
@@ -487,7 +488,7 @@ const verifyUserForPasswordResetHandler = async (req, res) => {
             const validUserTypes = ['aluno', 'professor'];
             //Verifica se o tipo de usuário é válido
             if (!validUserTypes.includes(userType)) {
-                //Loga o tipo de usuário inválido
+                //Log do tipo de usuário inválido
                 console.log('❌ [PasswordReset] UserType inválido:', userType);
                 return res.status(400).json({ error: 'Formato do userType inválido' });
             }
@@ -497,38 +498,38 @@ const verifyUserForPasswordResetHandler = async (req, res) => {
 
         //Verifica se o email e a data de nascimento foram fornecidos
         } else if (email && dataNascimento && !cpf) {
-            //Loga a verificação por email
+            //Log da verificação por email
             console.log('🔄 [PasswordReset] Usando verificação por email...');
             user = await verifyUserPasswordReset(email, dataNascimento);
 
         } else {
-            //Loga os campos obrigatórios faltando
+            //Log dos campos obrigatórios faltando
             console.log('❌ [PasswordReset] Campos insuficientes');
-            //Loga os campos obrigatórios faltando
+            //Log dos campos obrigatórios faltando
             logger.warn('Campos obrigatórios faltando', 'PASSWORD_RESET', { 
-                //Loga o email do usuário
+                //Log do email do usuário
                 email: !!email, 
-                //Loga a data de nascimento do usuário
+                //Log da data de nascimento do usuário
                 dataNascimento: !!dataNascimento,
-                //Loga o CPF do usuário
+                //Log do CPF do usuário
                 cpf: !!cpf,
-                //Loga o tipo de usuário
+                //Log do tipo de usuário
                 userType: !!userType
             });
             return res.status(400).json({ 
-                //Loga o erro
+                //Log do erro
                 error: 'Forneça (email + dataNascimento) OU (cpf + userType)' 
             });
         }
         
         if(!user){
-            //Loga que o usuário não foi encontrado
+            //Log do que o usuário não foi encontrado
             console.log('❌ [PasswordReset] Usuário não encontrado');
-            //Loga as credenciais inválidas
+            //Log das credenciais inválidas
             logger.warn('Credenciais inválidas', 'PASSWORD_RESET', { 
-                //Loga o CPF do usuário
+                //Log do CPF do usuário
                 cpf: cpf ? cpf.substring(0, 3) + '***' : 'não fornecido',
-                //Loga o tipo de usuário
+                //Log do tipo de usuário
                 userType 
             });
             //Retorna erro de credenciais inválidas
@@ -536,54 +537,54 @@ const verifyUserForPasswordResetHandler = async (req, res) => {
         }
 
         console.log('✅ [PasswordReset] Usuário verificado com sucesso:', {
-            //Loga o ID do usuário
+            //Log do ID do usuário
             userId: user.userId,
-            //Loga o email do usuário
+            //Log do email do usuário
             email: user.email
         });
 
         logger.info(`Usuário verificado para redefinição de senha: ${user.userId}`, 'PASSWORD_RESET');
 
         res.status(200).json({ 
-            //Loga o ID do usuário
+            //Log do ID do usuário
             userId: user.userId, 
-            //Loga o email do usuário
+            //Log do email do usuário
             email: user.email,
-            //Loga a mensagem de sucesso
+            //Log da mensagem de sucesso
             message: 'Usuário verificado com sucesso' 
         });
 
     } catch (error) {
-        //Loga o erro
+        //Log do erro
         console.error('❌ [PasswordReset] Erro ao verificar usuário:', error);
-        //Loga o erro
+        //Log do erro
         logger.error(`Erro ao verificar usuário para redefinição de senha: ${error.message}`, 'PASSWORD_RESET');
         res.status(500).json({ error: error.message });
     }
 };
 
 const resetPassword = async (req, res) => {
-    //Loga a requisição
+    //Log da requisição
     logger.logRequest(req, 'PASSWORD_RESET');
     
     try {
         //Obtém os dados do usuário
         const { userId, newPassword } = req.body;
-        //Loga a redefinição de senha
+        //Log da redefinição de senha
         
         console.log('🔐 [ResetPassword] Redefinindo senha:', { 
-            //Loga o ID do usuário
+            //Log do ID do usuário
             userId, 
-            //Loga o tamanho da nova senha
+            //Log do tamanho da nova senha
             newPasswordLength: newPassword?.length 
         });
 
         if(!userId || !newPassword){
-            //Loga os campos obrigatórios faltando
+            //Log dos campos obrigatórios faltando
             logger.warn('UserId ou newPassword ausentes', 'PASSWORD_RESET', { 
-                //Loga o ID do usuário
+                //Log do ID do usuário
                 userId: !!userId, 
-                //Loga a nova senha
+                //Log da nova senha
                 newPassword: !!newPassword 
             });
             //Retorna erro de campos obrigatórios faltando
@@ -600,21 +601,21 @@ const resetPassword = async (req, res) => {
         // Atualizar no MySQL (com hash)
         await resetUserPassword(userId, newPassword);
 
-        //Loga a senha redefinida para o usuário
+        //Log da senha redefinida para o usuário
         logger.info(`Senha redefinida para usuário: ${userId}`, 'PASSWORD_RESET');
         
-        //Loga a senha redefinida com sucesso
+        //Log da senha redefinida com sucesso
         console.log('✅ [ResetPassword] Senha redefinida com sucesso');
 
         res.status(200).json({ 
-            //Loga a mensagem de sucesso
+            //Log da mensagem de sucesso
             message: 'Senha redefinida com sucesso' 
         });
 
     } catch (error) {
-        //Loga o erro
+        //Log do erro
         console.error('❌ [ResetPassword] Erro ao redefinir senha:', error);
-        //Loga o erro
+        //Log do erro
         logger.error(`Erro ao redefinir senha: ${error.message}`, 'PASSWORD_RESET');
         
         //Retorna erro interno

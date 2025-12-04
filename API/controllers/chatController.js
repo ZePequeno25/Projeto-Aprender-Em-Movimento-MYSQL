@@ -23,7 +23,7 @@ const getCurrentUserId = async (req) => {
 const isValidId = (id, paramName) => {
     //Verifica se o ID é válido
     if(!id || id === 'undefined' || typeof id !== 'string' || id.trim().length === 0){
-        //Loga o ID inválido
+        //Log do ID inválido
         logger.warn(`ID inválido para ${paramName}: ${id}`);
         //Retorna false
         return false;
@@ -34,28 +34,28 @@ const isValidId = (id, paramName) => {
 
 //Função de adição de mensagem de chat
 const addChatMessageHandler = async (req, res) => {
-    //Loga o início do envio de mensagem de chat
+    //Log do início do envio de mensagem de chat
     logger.info('💬 [chatController] Iniciando envio de mensagem de chat', 'CHAT');
     
     try{
         //Obtém o ID do usuário atual
         const userId = await getCurrentUserId(req);
-        //Loga o usuário autenticado
+        //Log do usuário autenticado
         logger.info(`👤 [chatController] Usuário autenticado: ${userId}`, 'CHAT');
         
         //Obtém os dados da mensagem
         const {receiverId, message} = req.body;
-        //Loga os dados da mensagem
+        //Log dos dados da mensagem
         logger.info(`📊 [chatController] Dados: receiverId=${receiverId}, message length=${message?.length}`, 'CHAT');
         
         if(!receiverId || !message){
-            //Loga os campos obrigatórios faltando
+            //Log dos campos obrigatórios faltando
             logger.warn('❌ [chatController] Campos obrigatórios faltando', 'CHAT');
             //Retorna erro de campos obrigatórios faltando
             return res.status(400).json({error: 'Missing required fields'});
         }
         if(!isValidId(receiverId)){
-            //Loga o receiverId inválido
+            //Log do receiverId inválido
             logger.warn(`❌ [chatController] receiverId inválido: ${receiverId}`, 'CHAT');
             //Retorna erro de ID inválido
             return res.status(400).json({error: 'Invalid user ID'});
@@ -64,33 +64,33 @@ const addChatMessageHandler = async (req, res) => {
         const userType = (await isProfessor(userId)) ? 'professor' : (await isStudent(userId)) ? 'aluno' : null;
         //Verifica se o usuário é professor ou aluno
         if(!userType){
-            //Loga que o usuário não é professor nem aluno
+            //Log do que o usuário não é professor nem aluno
             logger.warn(`❌ [chatController] Usuário ${userId} não é professor nem aluno`, 'CHAT');
             //Retorna erro de usuário não autorizado
             return res.status(403).json({error: 'Only teachers and students can send messages'});
         }
         //Obtém os dados da mensagem
         const messageData = {
-            //Loga o ID do remetente
+            //Log do ID do remetente
             sender_id: userId,
-            //Loga o nome do remetente
+            //Log do nome do remetente
             sender_name: await getUserName(userId),
-            //Loga o tipo de remetente
+            //Log do tipo de remetente
             sender_type: userType,
-            //Loga o ID do receptor
+            //Log do ID do receptor
             receiver_id: receiverId,
-            //Loga a mensagem
+            //Log da mensagem
             message
         };
         //Adiciona a mensagem
         const messageId = await addChatMessage(messageData);
-        //Loga a mensagem enviada
+        //Log da mensagem enviada
         logger.info(`✅ [chatController] Mensagem enviada: ${messageId}`, 'CHAT');
         //Retorna a mensagem enviada
         res.status(201).json({message: 'Message sent', id: messageId});
 
     }catch(error){
-        //Loga o erro
+        //Log do erro
         logger.error('Erro ao enviar mensagem de chat', error, 'CHAT');
         //Retorna erro interno
         res.status(500).json({error: 'Internal server error'});
@@ -99,17 +99,17 @@ const addChatMessageHandler = async (req, res) => {
 
 //Função de obtenção de mensagens de chat
 const getChatMessagesHandler = async (req, res) => {
-    //Loga o início da busca de mensagens de chat
+    //Log do início da busca de mensagens de chat
     logger.info('📨 [chatController] Buscando mensagens de chat', 'CHAT');
     
     try{
         //Obtém os IDs do remetente e do receptor
         const { senderId, receiverId } = req.query;
-        //Loga os IDs do remetente e do receptor
+        //Log dos IDs do remetente e do receptor
         logger.info(`📊 [chatController] Params: senderId=${senderId}, receiverId=${receiverId}`, 'CHAT');
         
         if(!isValidId(senderId, 'sender_id') || !isValidId(receiverId, 'receiver_id')){
-            //Loga os IDs inválidos
+            //Log dos IDs inválidos
             logger.warn(`❌ [chatController] IDs inválidos`, 'CHAT');
             //Retorna erro de IDs inválidos
             return res.status(400).json({error: 'Invalid sender or recipient IDs'});
@@ -119,7 +119,7 @@ const getChatMessagesHandler = async (req, res) => {
         const userId = await getCurrentUserId(req);
         //Verifica se o usuário é o remetente ou o receptor
         if(userId !== senderId && userId !== receiverId){
-            //Loga que o usuário não tem permissão
+            //Log do que o usuário não tem permissão
             logger.warn(`❌ [chatController] Usuário ${userId} sem permissão`, 'CHAT');
             //Retorna erro de usuário não autorizado
             return res.status(403).json({error: 'You can only view your own messages'});
@@ -127,12 +127,12 @@ const getChatMessagesHandler = async (req, res) => {
         
         //Obtém as mensagens
         const messages = await getChatMessages(senderId, receiverId);
-        //Loga o número de mensagens encontradas
+        //Log do número de mensagens encontradas
         logger.info(`✅ [chatController] ${messages.length} mensagens encontradas`, 'CHAT');
         res.status(200).json(messages);
 
     }catch(error){
-        //Loga o erro
+        //Log do erro
         logger.error(`Erro ao listar mensagens de chat`, error, 'CHAT');
         //Retorna erro interno
         res.status(500).json({error: error.message});
@@ -141,20 +141,21 @@ const getChatMessagesHandler = async (req, res) => {
 
 //Função de obtenção de conversas do usuário
 const getUserConversationsHandler = async (req, res) => {
-    //Loga o início da busca de conversas do usuário
+    //Log do início da busca de conversas do usuário
     logger.info('💬 [chatController] Buscando conversas do usuário', 'CHAT');
     
     try {
         const userId = await getCurrentUserId(req);
+        //Log do usuário autenticado
         logger.info(`👤 [chatController] Usuário autenticado: ${userId}`, 'CHAT');
         
         //Obtém as conversas
         const conversations = await getUserConversations(userId);
-        //Loga o número de conversas encontradas
+        //Log do número de conversas encontradas
         logger.info(`✅ [chatController] ${conversations.length} conversas encontradas`, 'CHAT');
         res.status(200).json(conversations);
     } catch (error) {
-        //Loga o erro
+        //Log do erro
         logger.error(`Erro ao buscar conversas do usuário`, error, 'CHAT');
         //Retorna erro interno
         res.status(500).json({error: error.message});

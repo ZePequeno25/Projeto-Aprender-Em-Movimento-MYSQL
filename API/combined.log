@@ -2578,3 +2578,76 @@
 {"file":"_stream_transform.js","level":"info","line":"166","message":"✅ [relationshipController] Relação desvinculada: e0f0d073-e927-4cfd-a45c-4d720117cdbc_a55996ee-598d-4674-95d9-fb630b565464","timestamp":"2025-11-20 10:31:18"}
 {"file":"_stream_transform.js","level":"info","line":"166","message":"Variáveis de ambiente carregadas: DB_HOST=localhost, ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000","timestamp":"2025-11-20 10:35:22"}
 {"file":"_stream_transform.js","level":"info","line":"166","message":"Servidor rodando na porta 5050","timestamp":"2025-11-20 10:35:22"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Verificando base de dados \"aprender_em_movimento\"","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Conectado ao banco de dados MySQL","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 001_create_users_table.sql","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 001_create_users_table.sql executada com sucesso","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 002_create_chats_table.sql","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 002_create_chats_table.sql executada com sucesso","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 003_create_questions_table.sql","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 003_create_questions_table.sql executada com sucesso","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 004_create_comments_table.sql","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 004_create_comments_table.sql executada com sucesso","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 005_create_comments_responses_table.sql","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 005_create_comments_responses_table.sql executada com sucesso","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 006_create_teacher_codes_table.sql","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 006_create_teacher_codes_table.sql executada com sucesso","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 007_create_teacher_students_table.sql","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 007_create_teacher_students_table.sql executada com sucesso","timestamp":"2025-11-28 17:05:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Variáveis de ambiente carregadas: DB_HOST=localhost, ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000","timestamp":"2025-11-28 17:05:26"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Servidor rodando na porta 5050","timestamp":"2025-11-28 17:05:26"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Requisição recebida: POST /login","timestamp":"2025-11-28 17:14:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Pool de conexões MySQL inicializado com sucesso","timestamp":"2025-11-28 17:14:24"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Requisição recebida: POST /login","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"🔍 [relationshipController] Token decodificado: [object Object]","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"💬 [chatController] Buscando conversas do usuário","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"👤 [chatController] Usuário autenticado: e0f0d073-e927-4cfd-a45c-4d720117cdbc","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"📚 [questionController] Buscando todas as questões...","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"👤 [questionController] Usuário autenticado: e0f0d073-e927-4cfd-a45c-4d720117cdbc","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ [chatController] 0 conversas encontradas","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"📊 [questionController] Aluno e0f0d073-e927-4cfd-a45c-4d720117cdbc vinculado a 0 professores","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ [questionController] 0 questões encontradas","timestamp":"2025-11-28 17:14:34"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"🔍 [relationshipController] Token decodificado: [object Object]","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"📚 [questionController] Buscando todas as questões...","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"👤 [questionController] Usuário autenticado: e0f0d073-e927-4cfd-a45c-4d720117cdbc","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Origem da requisição","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"💬 [chatController] Buscando conversas do usuário","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"👤 [chatController] Usuário autenticado: e0f0d073-e927-4cfd-a45c-4d720117cdbc","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ [chatController] 0 conversas encontradas","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"📊 [questionController] Aluno e0f0d073-e927-4cfd-a45c-4d720117cdbc vinculado a 0 professores","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ [questionController] 0 questões encontradas","timestamp":"2025-11-28 17:17:20"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Verificando base de dados \"aprender_em_movimento\"","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Conectado ao banco de dados MySQL","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 001_create_users_table.sql","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 001_create_users_table.sql executada com sucesso","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 002_create_chats_table.sql","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 002_create_chats_table.sql executada com sucesso","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 003_create_questions_table.sql","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 003_create_questions_table.sql executada com sucesso","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 004_create_comments_table.sql","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 004_create_comments_table.sql executada com sucesso","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 005_create_comments_responses_table.sql","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 005_create_comments_responses_table.sql executada com sucesso","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 006_create_teacher_codes_table.sql","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 006_create_teacher_codes_table.sql executada com sucesso","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Executando migração: 007_create_teacher_students_table.sql","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"✅ Migração 007_create_teacher_students_table.sql executada com sucesso","timestamp":"2025-12-02 11:52:56"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Variáveis de ambiente carregadas: DB_HOST=localhost, ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000","timestamp":"2025-12-02 11:52:58"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Servidor rodando na porta 5050","timestamp":"2025-12-02 11:52:58"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Variáveis de ambiente carregadas: DB_HOST=localhost, ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000","timestamp":"2025-12-02 11:53:12"}
+{"file":"_stream_transform.js","level":"info","line":"166","message":"Servidor rodando na porta 5050","timestamp":"2025-12-02 11:53:12"}
