@@ -5,7 +5,7 @@ color 0b
 
 echo.
 echo ╔══════════════════════════════════════════╗
-echo ║     QUIZZY BRAINY - Setup Windows       ║
+echo ║     QUIZZY BRAINY - Setup Windows        ║
 echo ╚══════════════════════════════════════════╝
 echo.
 
@@ -82,7 +82,7 @@ echo.
 echo ► Iniciando servidores em janelas separadas...
 start "API - Quizzy Brainy" cmd /k "title API - Quizzy Brainy && cd API && npm run dev"
 timeout /t 2 >nul
-start "WEB - Quizzy Brainy" cmd /k "title WEB - Quizzy Brainy && cd \"%cd%\" && npm run dev"
+start "WEB - Quizzy Brainy" cmd /k "title WEB - Quizzy Brainy && npm run dev"
 
 echo.
 echo ╔══════════════════════════════════════════╗
@@ -93,4 +93,5 @@ echo ║   WEB  → http://localhost:5050           ║
 echo ╚══════════════════════════════════════════╝
 echo.
 echo Esta janela pode ser fechada.
+
 pause
