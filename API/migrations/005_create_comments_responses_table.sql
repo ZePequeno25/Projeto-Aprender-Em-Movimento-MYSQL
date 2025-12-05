@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS comments_responses (
     user_id VARCHAR(255) NOT NULL,
     user_name VARCHAR(255) NOT NULL,
     user_type ENUM('aluno', 'professor') NOT NULL,
-    message TEXT NOT NULL,
+    `message` TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_comment_id (comment_id),
     INDEX idx_user_id (user_id),

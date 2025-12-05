@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS chats (
     sender_name VARCHAR(255) NOT NULL,
     sender_type ENUM('aluno', 'professor') NOT NULL,
     receiver_id VARCHAR(255) NOT NULL,
-    message TEXT NOT NULL,
+    `message` TEXT NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_sender_receiver (sender_id, receiver_id),
     INDEX idx_receiver_sender (receiver_id, sender_id),
